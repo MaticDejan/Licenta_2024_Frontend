@@ -1,0 +1,60 @@
+<div class="updateExercitiu">
+    <div class="loginBackground">
+
+        <div class="infoDiv">
+            <h1>Pagina aceasta este dedicată administratorilor aplicației. Aveți posibilitatea să adăugați un exercițiu în baza de date a aplicației.</h1>
+        </div>
+    </div>
+    <form [formGroup]="exercitiuForm">
+        <div class="mijloc4">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nume exercițiu</mat-label>
+                    <input matInput formControlName="Nume" placeholder="Introduceți numele ">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Categorie</mat-label>
+                    <mat-select formControlName="Categorie" placeholder="Categorie">
+                        <mat-option value="Biceps">Biceps</mat-option>
+                        <mat-option value="Triceps">Triceps</mat-option>
+                        <mat-option value="Antebrat">Antebraț</mat-option>
+                        <mat-option value="Abdomen">Abdomen</mat-option>
+                        <mat-option value="Umeri">Umeri</mat-option>
+                        <mat-option value="Spate">Spate</mat-option>
+                        <mat-option value="Piept">Piept</mat-option>
+                        <mat-option value="Gambe">Gambe</mat-option>
+                        <mat-option value="Coapse">Coapse</mat-option>
+                        <mat-option value="Cardio">Cardio</mat-option>
+                        <mat-option value="Sporturi">Sporturi</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Descriere exercițiu</mat-label>
+                    <textarea formControlName="Descriere" matInput rows="5"></textarea>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Kilocalorii consumate în 10 minute</mat-label>
+                    <input matInput formControlName="caloriiPer10Minute" placeholder="Kilocalorii consumate in 10 minute">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Kilocalorii consumate în o repetare</mat-label>
+                    <input matInput formControlName="caloriiPerRepetare" placeholder="Kilocalorii consumate in o repetare">
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="button_center_gap">
+            <button (click)="onAdd()" mat-raised-button color="primary">Adaugă exercițiu</button>
+            <button (click)="onClose()" mat-raised-button color="primary">Închide pagina</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,38 @@
+@if(filtru == 0){
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>Aceasta este pagina profilului tău ! În această pagină ai posibilitatea de a vizualiza și actualiza datele profilului tău. De asemenea, poți să îți calculezi indicele de masă corporal, necesarul tău caloric și greutatea ideală.
+        </h1>
+    </div>
+</div>}@else if (filtru == 1) {
+<div class="loginBackground">
+    <div class="infoDiv">
+        <h1>Aceasta este pagina meniurilor tale și ai posibilitatea de a vedea care sunt meniurile alimentare salvate de către tine sau antrenorul tău. Prin accesarea unui meniu ai posibilitatea de a vizualiza valorile nutriționale detaliate cât și conținutul
+            acestuia !</h1>
+    </div>
+</div>
+} @else {
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>Aceasta este pagina antrenamentelor tale și ai posibilitatea de a vedea care sunt antrenamentele salvate de către tine sau antrenorul tău pentru tine! Prin accesarea unui antrenament ai posibilitatea de a vizualiza detaliat efortul depun prin
+            efectuarea antrenamentului.
+        </h1>
+    </div>
+</div>
+}
+
+<div class="MatCard buttonSpace">
+    <button mat-flat-button color="primary" (click)="filter(0)">Informații generale</button>
+    <button mat-flat-button color="primary" (click)="filter(1)">Meniuri</button>
+    <button mat-flat-button color="primary" (click)="filter(2)">Antrenamente</button>
+</div>
+
+@if(filtru == 0){
+<app-profile-my-info></app-profile-my-info>
+} @else { @if(filtru == 1){
+<app-profile-mancare></app-profile-mancare>
+} @else {
+<app-profile-antrenament> </app-profile-antrenament>
+} }

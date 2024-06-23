@@ -1,0 +1,146 @@
+<div class="updateAliment">
+    <div class="loginBackground">
+
+        <div class="infoDiv">
+            <h1>Pagina aceasta este dedicată administratorilor aplicației. Aveți posibilitatea să adăugați un aliment în baza de date a aplicației.</h1>
+        </div>
+    </div>
+
+    <form [formGroup]="ProdusForm">
+        <div class="container">
+            <div class="primele4">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nume</mat-label>
+                        <input matInput formControlName="Nume" placeholder="Introduceți numele ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proteine</mat-label>
+                        <input matInput formControlName="proteine" placeholder="Proteine ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Carbohidrați</mat-label>
+                        <input matInput type="number" formControlName="carbohidrati" placeholder="Carbohidrati ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Grăsimi</mat-label>
+                        <input matInput type="number" formControlName="grasimi" placeholder="Grasimi ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Zahăr</mat-label>
+                        <input matInput type="number" formControlName="zahar" placeholder="Zahar ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Calorii</mat-label>
+                        <input matInput type="number" formControlName="kcal" placeholder="Calorii ">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="mijloc4">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Categorie</mat-label>
+                        <mat-select formControlName="Categorie" placeholder="Categorie">
+                            <mat-option value="Carne">Carne</mat-option>
+                            <mat-option value="Dulciuri">Dulciuri</mat-option>
+                            <mat-option value="Fructe">Fructe</mat-option>
+                            <mat-option value="Legume">Legume</mat-option>
+                            <mat-option value="Lactate">Lactate</mat-option>
+                            <mat-option value="Seminte">Semințe</mat-option>
+                            <mat-option value="Diverse">Diverse</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proteine aliment fiert</mat-label>
+                        <input matInput formControlName="proteineFiert" placeholder="Proteine aliment fiert">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Carbohidrați aliment fiert</mat-label>
+                        <input matInput type="number" formControlName="carbohidratiFiert" placeholder="Carbohidrati aliment fiert ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Grăsimi aliment fiert</mat-label>
+                        <input matInput type="number" formControlName="grasimiFiert" placeholder="Grasimi aliment fiert ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Zahăr aliment fiert</mat-label>
+                        <input matInput type="number" formControlName="zaharFiert" placeholder="Zahar aliment fiert ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Calorii aliment fiert</mat-label>
+                        <input matInput type="number" formControlName="kcalFiert" placeholder="Calorii aliment fiert ">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="ultimele4">
+                <div class="mijloc4">
+
+                    <input formControlName="imagine" id="fileInput" type="file" (change)="onFileChange($event)" hidden required>
+                    <button mat-flat-button color="primary" type="button" (click)="triggerFileInput()">Alege fișier</button>
+                    <span>@if(selectedFile != null){Fișier adăugat}</span>
+                    <br>
+                    <br>
+
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proteine aliment prăjit</mat-label>
+                        <input matInput formControlName="proteinePrajit" placeholder="Proteine aliment prajit">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Carbohidrați aliment prăjit</mat-label>
+                        <input matInput type="number" formControlName="carbohidratiPrajit" placeholder="Carbohidrati aliment prajit ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Grasimi aliment prăjit</mat-label>
+                        <input matInput type="number" formControlName="grasimiPrajit" placeholder="Grasimi aliment prajit ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Zahăr aliment prăjit</mat-label>
+                        <input matInput type="number" formControlName="zaharPrajit" placeholder="Zahar aliment prajit ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Calorii aliment prăjit</mat-label>
+                        <input matInput type="number" formControlName="kcalPrajit" placeholder="Calorii aliment prajit ">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="button_center_gap">
+            <button (click)="onAdd()" mat-raised-button color="primary">Adaugă aliment</button>
+            <button (click)="onClose()" mat-raised-button color="primary">Închide pagina</button>
+        </div>
+    </form>
+
+
+
+</div>

@@ -1,0 +1,442 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Aceasta este pagina alimentelor ! Ai acces la o multitudine de alimente care aparțin de diferite categorii și pe care le poți filtra după categorie sau modul de preparar. Pe baza valorilor nutriționale poți să selectezi alimentele dorite și să generezi
+            și salvezi un meniu alimentar !
+
+        </h1>
+    </div>
+</div>
+
+@if(alimenteSelectate > 0){
+<p>Ai selectat {{alimenteSelectate}} alimente</p>
+<button mat-flat-button color="primary" (click)="newMeniu()">Generează un meniu</button> }
+
+
+
+
+<div class="SpaceBottom">
+    <div class="MatCard buttonSpace">
+        <p>Filtru de categorie</p>
+    </div>
+    <div class="MatCard buttonSpace">
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(0)">Toate alimentele</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(1)">Carne</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(2)">Dulciuri</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(3)">Legume</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(4)">Fructe</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(5)">Semințe</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(6)">Lactate</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(7)">Diverse</button>
+    </div>
+</div>
+
+
+
+
+
+<div class="SpaceBottom">
+    <div class="MatCard buttonSpace">
+        <p>Filtru de preparare</p>
+    </div>
+    <div class="MatCard buttonSpace">
+
+        <button mat-flat-button color="primary" (click)="onCrud(alimente)">Crud</button>
+        <button mat-flat-button color="primary" (click)="onFiert(alimente)">Fiert</button>
+        <button mat-flat-button color="primary" (click)="onPrajit(alimente)">Prăjit</button>
+    </div>
+</div>
+<div class="container">
+    @if(filtruCategorie == 0){ @for(aliment of alimente;track aliment){
+
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă În meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>} }@else if (filtruCategorie == 1) { @for(aliment of carne;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 2) { @for(aliment of dulciuri;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 3) { @for(aliment of legume;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if(filtruCategorie == 4){ @for(aliment of fructe;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 5) { @for(aliment of seminte;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 6) { @for(aliment of lactate;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 7) { @for(aliment of diverse;track aliment){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{aliment.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{aliment.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="aliment.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+            <div class="centrareTabela">
+                <table>
+                    <tr>
+                        <th>Proteine</th>
+                        <th>Carbohidrați</th>
+                        <th>Grăsimi</th>
+                        <th>Zahăr</th>
+                        <th>Kcal/100g</th>
+                    </tr>
+                    <tr>
+                        @if(alimente.prajit == 1){
+                        <th>{{aliment.proteinePrajit}}</th>
+                        <th>{{aliment.carbohidratiPrajit}}</th>
+                        <th>{{aliment.grasimiPrajit}}</th>
+                        <th>{{aliment.zaharPrajit}}</th>
+                        <th>{{aliment.kcalPrajit}}</th>
+                        } @else if (alimente.fiert == 1) {
+                        <th>{{aliment.proteineFiert}}</th>
+                        <th>{{aliment.carbohidratiFiert}}</th>
+                        <th>{{aliment.grasimiFiert}}</th>
+                        <th>{{aliment.zaharFiert}}</th>
+                        <th>{{aliment.kcalFiert}}</th>
+                        } @else {
+                        <th>{{aliment.proteine}}</th>
+                        <th>{{aliment.carbohidrati}}</th>
+                        <th>{{aliment.grasimi}}</th>
+                        <th>{{aliment.zahar}}</th>
+                        <th>{{aliment.kcal}}</th>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(aliment) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaAlimentMeniu(aliment)">Adaugă în meniu</button>}@else{<button mat-flat-button color="primary" (click)="StergeAlimentMeniu(aliment)">Șterge din meniu</button>} @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(aliment.Id)">Ștergere aliment</button>}
+        </div>
+
+
+    </mat-card>
+    } }
+</div>
+
+<br><br><br> @if(user[0].Admin ){
+<div class="MatCard">
+    <button mat-flat-button color="primary" (click)="onAddAliment()">Adaugă aliment</button>
+</div>
+}

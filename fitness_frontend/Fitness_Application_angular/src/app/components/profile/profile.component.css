@@ -1,0 +1,33 @@
+.MatCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.buttonSpace {
+    gap: 8px;
+}
+
+.infoDiv {
+    background-color: lightgreen;
+    width: 850px;
+    margin: 30px;
+    padding: 30px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+}
+
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}

@@ -1,0 +1,35 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>Completează mai jos formularul de conectare în aplicație prin introducerea adresei de email și a parolei contului tău. Dacă nu ai un cont poți să completezi formularul de înregistrare în aplicația noastră pentru a îți crea un cont și a te conecta
+            ulterior.
+        </h1>
+    </div>
+</div>
+<div class="login">
+    <mat-card class="matCardContent loginBackground">
+        <div class="formular">
+            <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" placeholder="Introduceți adresa de email">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Parola</mat-label>
+                        <input matInput type="password" formControlName="parola" placeholder="Introduceți parola">
+                    </mat-form-field>
+                </div>
+                <div class="mijloc4">
+                    <span class="navigare" (click)="conectare()">Nu ai un cont ? Crează un cont !</span>
+                    <button mat-flat-button color="primary" type="submit" color="primary">Conectare</button>
+                </div>
+
+
+            </form>
+
+        </div>
+    </mat-card>
+</div>

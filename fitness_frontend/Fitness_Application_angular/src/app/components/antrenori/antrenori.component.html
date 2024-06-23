@@ -1,0 +1,27 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Aceasta este pagina de selecție pentru antrenori. Vă puteți selecta un antrenor din lista de mai jos cu scopul de a începe colaborarea cu acesta. Puteți să aveți un singul antrenor selectat la un moment dat. Antrenorul selectat are posibilitatea să vă
+            adauge meniuri alimentare și antrenamente.
+        </h1>
+    </div>
+</div>
+
+<div class="container">
+    @for(x of antrenori;track x){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent">
+                <div (click)="navigateTo(x.Id)">
+                    <mat-card-title>{{x.Nume}} {{x.Prenume}}</mat-card-title>
+                    <mat-card-subtitle>Antrenor</mat-card-subtitle>
+                    <div><img class="circle-image" [src]="x.imagine"></div>
+                </div>
+                <div class="pozitieMatCard buttonSpace">@if(user[0].idAntrenor == 0 || user[0].idAntrenor == null ){<button mat-flat-button color="primary" (click)="onAdaugaAntrenor(user[0],x.Id)">Adaugă antrenor</button>} @if(user[0].idAntrenor > 0 && user[0].idAntrenor == x.Id){
+                    <button mat-flat-button color="primary" (click)="onStergeAntrenor(user[0])">Șterge antrenor</button>}</div>
+            </div>
+        </mat-card>
+    </div>
+    }
+</div>

@@ -1,0 +1,19 @@
+@if(activ == 1){
+<mat-toolbar>
+    <span class="FitnessApp">FitnessApp      </span>
+    <span>Bine ai venit in aplicatie {{request[0].Nume}} {{request[0].Prenume}}</span>
+
+    <div class="spacer">
+
+    </div>
+    <a mat-button [routerLink]="['profile',IdUtilizator]">Profilul meu</a>
+    <a mat-button routerLink="Alimente">Alimente</a>
+    <a mat-button routerLink="Exercitii">Exercitii</a>
+    <a mat-button routerLink="Antrenori">Antrenori</a>
+    <a mat-button routerLink="cereri">Cereri</a> @if(utilizator[0].Antrenor) {
+    <a mat-button routerLink="clienti">Clienti</a> } @if(utilizator[0].Admin){
+    <a mat-button routerLink="AdminDashboard">AdminDashboard</a> }
+
+    <a mat-button (click)="onLogOut(utilizator[0])">Log out</a>
+</mat-toolbar>
+}

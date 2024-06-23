@@ -1,0 +1,55 @@
+.meniu {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.buton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MatCardContent {
+    border-radius: 10%;
+    padding: 20px;
+    width: 800px;
+}
+
+.formContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonSpace {
+    margin: 10px;
+    gap: 3px;
+}
+
+.MatCardNormal {
+    margin: 10px;
+}
+
+.infoDiv {
+    background-color: lightgreen;
+    width: 850px;
+    margin: 30px;
+    padding: 30px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+}
+
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}

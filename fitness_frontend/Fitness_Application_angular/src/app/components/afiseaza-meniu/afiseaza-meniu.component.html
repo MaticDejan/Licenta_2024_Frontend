@@ -1,0 +1,112 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>Aceasta este pagina meniului alimentar selectat. Aveți posibilitatea de a vizualiza valorile nutriționale pentru fiecare aliment care aparține meniului cât și pentru întreg meniul.</h1>
+    </div>
+</div>
+<div class="afiseazaMeniu">
+    <mat-card class="formContent layoutMatcard">
+        @for(x of meniu;track x){
+        <div class="formContent">
+            <mat-card-title>{{x.Nume}}</mat-card-title>
+        </div>
+
+        <div class="formContent">
+            <mat-card-subtitle>Meniu alimentar</mat-card-subtitle>
+        </div>
+
+        <div class=" maxSizeText">
+            <mat-card-content><b>Descriere: <br> </b> {{x.descriere}}</mat-card-content>
+        </div>
+
+
+        <p><b>Conținutul meniului:</b></p>
+        @for(gramaj of gramaje;track gramaj) { @if(x.Id == gramaj.idMeniu){
+        <div class="formContent MatCardNormal">
+
+            <mat-card class="formContent matcardContend">
+                @for(produs of produse;track produs){ @if(produs.Id == gramaj.idProdus){
+                <div class="formContent">
+                    <mat-card-title>{{produs.Nume}}</mat-card-title>
+                </div>
+                <div class="formContent">
+                    <mat-card-subtitle>@if(gramaj.prajit){prăjit}@else if(gramaj.fiert){fiert} @else {crud}</mat-card-subtitle>
+                </div>
+                <div class="formContent">
+                    <mat-card-subtitle>Gramaj: {{gramaj.gramaj}}</mat-card-subtitle>
+                </div>
+
+                <div class="formContent margin"><img class="circle-image" [src]="produs.imagine" onerror="this.onerror=null;this.src='https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg';"></div>
+
+                @if(gramaj.prajit == 1){
+                <div class="formContent margin">
+                    <table>
+                        <tr>
+                            <th>Proteine</th>
+                            <th>Grăsimi</th>
+                            <th>Carbohidrați</th>
+                            <th>Zahăr</th>
+                            <th>Kiloalorii</th>
+                        </tr>
+                        <tr>
+                            <th>{{produs.proteinePrajit}}</th>
+                            <th>{{produs.grasimiPrajit}}</th>
+                            <th>{{produs.carbohidratiPrajit}}</th>
+                            <th>{{produs.zaharPrajit}}</th>
+                            <th>{{produs.kcalPrajit}}</th>
+                        </tr>
+                    </table>
+                </div>
+
+                } @else if(gramaj.fiert == 1){
+                <div>
+                    <table>
+                        <tr>
+                            <th>Proteine</th>
+                            <th>Grăsimi</th>
+                            <th>Carbohidrați</th>
+                            <th>Zahăr</th>
+                            <th>Kiloalorii</th>
+                        </tr>
+                        <tr>
+                            <th>{{produs.proteineFiert}}</th>
+                            <th>{{produs.grasimiFiert}}</th>
+                            <th>{{produs.carbohidratiFiert}}</th>
+                            <th>{{produs.zaharFiert}}</th>
+                            <th>{{produs.kcalFiert}}</th>
+                        </tr>
+                    </table>
+                </div>
+
+                } @else if (gramaj.crud == 1) {
+                <div>
+                    <table>
+                        <tr>
+                            <th>Proteine</th>
+                            <th>Grăsimi</th>
+                            <th>Carbohidrați</th>
+                            <th>Zahăr</th>
+                            <th>Kiloalorii</th>
+                        </tr>
+                        <tr>
+                            <th>{{produs.proteine}}</th>
+                            <th>{{produs.grasimi}}</th>
+                            <th>{{produs.carbohidrati}}</th>
+                            <th>{{produs.zahar}}</th>
+                            <th>{{produs.kcal}}</th>
+                        </tr>
+                    </table>
+                </div>
+                } } }
+            </mat-card>
+        </div>
+        } }
+        <p><b>Valori nutriționale totale</b> </p>
+        <p>Proteine: {{x.proteine}}</p>
+        <p>Carbohidrați: {{x.carboohidrati}}</p>
+        <p>Grăsimi: {{x.grasimi}}</p>
+        <p>Zahăr: {{x.zahar}}</p>
+        <p>Kilocalorii: {{x.kcal}}</p>
+        }
+    </mat-card>
+</div>

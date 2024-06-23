@@ -1,0 +1,62 @@
+.infoDiv {
+    background-color: lightgreen;
+    width: 850px;
+    margin: 30px;
+    padding: 30px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+}
+
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.updateUser {
+    width: 750px;
+    height: 675px;
+    padding: 20px;
+}
+
+.pozitie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.buttonSpace {
+    gap: 8px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.primele4 {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
+.mijloc4 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ultimele4 {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+}

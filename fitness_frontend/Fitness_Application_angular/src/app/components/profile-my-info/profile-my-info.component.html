@@ -1,0 +1,133 @@
+ @for(client of user;track client){
+<div class="container">
+    <div class="profile-container">
+        <mat-card class="layoutMatcard">
+            <div class="user-info">
+                <div class="formContent">
+                    <mat-card-title>Informații Utilizator</mat-card-title>
+                </div>
+                <br>
+                <div>
+                    <p><b>Nume:</b> {{client.Nume }}</p>
+                </div>
+                <div>
+                    <p><b>Prenume:</b> {{client.Prenume }}</p>
+                </div>
+                <p><b>Rol: </b> @if(client.Admin == 1){Admin } @if(client.Antrenor == 1){Antrenor }@if(client.Admin != 1 && client.Antrenor != 1){Utilizator}</p>
+                <p><b>Sex:</b> {{client.sex}}</p>
+                <div>
+                    <p><b>Vârstă: </b>{{client.Varsta }} ani</p>
+                </div>
+                <div>
+                    <p><b>Email:</b> {{client.Email}}</p>
+                </div>
+                <p><b>Lucrează cu un antrenor: </b>@if(client.idAntrenor > 0){da}@else {nu}</p>
+                <div>
+                    <p><b>Activitate: </b>{{client.Activitate}}</p>
+                </div>
+                <p><b>Greutate: </b>{{client.Greutate}} kg</p>
+                <p><b>Înălțime:</b> {{client.Inaltime}} cm</p>
+                <p> <b>Circumferință gât: </b>{{client.gat}}</p>
+                <p><b>Circumferință talie: </b>{{client.talie}}</p>
+                <p><b>Circumferință antebraț: </b>{{client.antebrat}}</p>
+                <p><b>Circumferință coapsă: </b>{{client.coapsa}}</p>
+                <p><b>Necesarul caloric zilnic: </b>{{necesarCaloric}}</p>
+                <p><b>Indicele de masă corporal: </b>{{imcUser}}</p>
+                <p><b>Greutatea ideală: </b>{{greutateIdeala}} kg</p>
+                @if(idUserLogat == client.Id){<button mat-flat-button color="primary" (click)="updateUser()">Modifică profilul</button>}
+
+            </div>
+        </mat-card>
+        <div class="user-image">
+            <div>
+                <img class="circle-image" [src]="client.imagine" alt="User Image">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br> @if(idUserLogat == client.Id){
+                <div class=" circle-image space">
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Calculează necesarul tău caloric</th>
+                                <th>Calculează indicele tău de masă corporal</th>
+                                <th>Calculează greutatea ta ideală</th>
+                            </tr>
+                            <tr>
+                                <th><button mat-flat-button color="primary" (click)="onNecesarCaloricUser(client)">Calculeaza</button></th>
+                                <th><button mat-flat-button color="primary" (click)="onImc(client)">Calculeaza</button></th>
+                                <th><button mat-flat-button color="primary" (click)="onGreutateIdealaUser(client)">Calculeaza</button></th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+@if(idUserLogat == client.Id){
+<div class="main-container">
+    <div class="card-container">
+        <mat-card class="example-card">
+            <br>
+            <h1>Necesar caloric</h1>
+            <br> @if(necesarCaloric > 0){
+            <p>Necesarul caloric este calculat cu scopoul de a afla câte calorii trebuie să consumați pentru a vă menține greutatea actuală</p>
+            <p>Necesarul dumneavoastră caloric este de {{necesarCaloric}} calorii. @if(imcUser > 0 ){@if(imcUser >= 18.5 && imcUser
+                <=25){Greutatea dumneavoastră este ideală. Continuați să consumați zilnic {{necesarCaloric}} calorii.}@else {@if(imcUser < 18.5){Ar trebui să vă îngrășați. Consumați {{necesarCaloricJos}} calorii pentru a vă îngrășa 0.5 kg pe săptămână și repetați măsurătorile
+                    după ce va îngrășați 1 kg.}@else if(imcUser> 25){Ar trebui să slăbiți. Consumați {{necesarCaloricSus}} calorii pentru a slăbi 0.5 kg pe săptămână și repetați măsurătorile după ce slăbiți 1 kg.} } }@else {Deoarece nu v-ați calculat indecele de masă corporală, nu putem să interpretăm
+                    rezultatul. Vă sugerăm să îl calculați.}</p>
+
+            } @else {
+            <p>Nu v-ați calculat necesarul dumneavoastră caloric !</p>
+            }
+        </mat-card>
+    </div>
+    <div class="card-container">
+        <mat-card class="example-card">
+            <br>
+            <h1>Indice de masă corporală</h1>
+            <br> @if(imcUser > 0){
+            <p>Indicele de masă corporală ajută în determinarea stadiului greutății corporale și poate oferi o imagine de ansamblu în privința măsurilor care ar trebui luate. Indicele dumneavoastră de masă corporală are valoarea {{imcUser}} kg/m^2 . @if(imcUser
+                > 0 && imcUser
+                < 16 ){ <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este cuprins între 0 și 16, acest lucru vă plasează în categoria de subnutriție, ar trebui să consultați un medic specialist.</p>
+            } @else if(imcUser >= 16 && imcUser
+            < 18.5 ){ <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este cuprins între 16 și 18.5, acest lucru vă plasează în categoria de subponderal, ar trebui să consultați un medic specialist.</p>
+                } @else if(imcUser >= 18.5 && imcUser
+                < 25 ){ <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este cuprins între 18.5 și 25. Această valoare a indicelui de masă corporală este ideală și vă plasează in categoria normală. </p>
+                    } @else if(imcUser >= 25 && imcUser
+                    < 30 ){ <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este cuprins între 25 și 30, acest lucru vă plasează în categoria de supraponderal, ar trebui să consultați un medic specialist.</p>
+                        } @else if(imcUser >= 30 && imcUser
+                        < 35 ){ <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este cuprins între 30 și 35, acest lucru vă plasează în categoria de obezitate clasa I, ar trebui să consultați un medic specialist.</p>
+                            } @else if(imcUser >= 35 && imcUser
+                            < 40 ){ <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este cuprins între 30 și 35, acest lucru vă plasează în categoria de obezitate clasa II, ar trebui să consultați un medic specialist.</p>
+                                }@else if(imcUser >40){
+                                <p>Deoarece valoarea indicelui dumneavoastră de masă corporală este peste 40, acest lucru vă plasează în categoria de obezitate clasa III, ar trebui să consultați un medic specialist.</p>
+                                }
+                                </p>
+                                } @else {
+                                <p>Nu v-ați calculat indicele dumneavoastră de masă corporală !</p>
+                                }
+        </mat-card>
+    </div>
+    <div class="card-container">
+        <mat-card class="example-card">
+            <br>
+            <h1>Greutatea ideală</h1>
+            <br> @if(greutateIdeala > 0){
+            <p>Greutatea dumneavoastră ideală este {{greutateIdeala}} kg. </p>
+            <p>Intervalul dumneavoastră ideal de greutate recomandat este între {{greutateIdealaJos}} kg și {{greutateIdealaSus}} kg.</p>
+            @if(userGreutate
+            < greutateIdealaJos || userGreutate> greutateIdealaSus ){
+                <p>Greutatea dumneavoastră nu se află în limitele normale. Vă recomandăm să consultați un medic specialist deoarece greutatea dumneavoastră este @if(userGreutate
+                    < greutateIdealaJos){ sub limitele normale.} @else if (userGreutate> greutateIdealaSus) {peste limitele normale.}</p>
+                } }@else {
+                <p>Nu v-ați calculat greutatea ideală !</p>}
+                <p></p>
+        </mat-card>
+    </div>
+</div>
+} }

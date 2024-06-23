@@ -1,0 +1,20 @@
+<div class="container">
+    @for(antrenament of antrenamente;track antrenament){@if(antrenament.idUtilizator == userId){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div (click)="navigateTo(antrenament.Id)" class="matcardContent buttonSpace">
+                <div class="maxSizeTitle">
+                    <mat-card-title>{{antrenament.Nume}}</mat-card-title>
+                </div>
+                <mat-card-subtitle>Antrenament</mat-card-subtitle>
+                <div><img class="circle-image" src="https://licenta0405dejan.blob.core.windows.net/pozestatice/antrenament.jpg"></div>
+                <p><b>Total calorii:</b> {{antrenament.calorii}} kcal</p>
+            </div>
+            <div class="pozitieMatCard">
+                <button mat-flat-button color="primary" (click)="onDeleteAntrenament(antrenament.Id)">Șterge antrenament</button>
+            </div>
+        </mat-card>
+    </div>
+
+    }}
+</div>

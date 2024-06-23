@@ -1,0 +1,413 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            În această pagină ai acces la o gamă largă de exerciții care pot să fie filtrate după categorie. Selectează exercițiile dorite pentru formarea unui antrenament și salvarea acestuia în pagina profilului.
+        </h1>
+    </div>
+</div>
+
+@if(exercitiiSelectate > 0){
+<p>Ai selectat {{exercitiiSelectate}} exerciții</p>
+<button mat-flat-button color="primary" (click)="newAntrenament()">Generează un antrenament</button> }
+
+
+<div class="SpaceBottom">
+    <div class="MatCard buttonSpace">
+        <p>Filtru de categorie</p>
+    </div>
+    <div class="MatCard buttonSpace">
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(0)">Toate exercițiile</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(1)">Biceps</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(2)">Triceps</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(3)">Antebraț</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(4)">Piept</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(5)">Spate</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(6)">Umeri</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(7)">Coapse</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(8)">Gambe</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(9)">Abdomen</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(10)">Sporturi</button>
+        <button mat-flat-button color="primary" (click)="onFiltruCategorie(11)">Cardio</button>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+    @if(filtruCategorie == 0){ @for(exercitiu of exercitii;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" src="https://licenta0405dejan.blob.core.windows.net/pozestatice/exercitiu.jpg"></div>
+            <div class=" maxSizeText">
+                <mat-card-content><b> Descriere:</b> <br> {{exercitiu.Descriere}}</mat-card-content>
+            </div>
+            <div class="centrareTabela">
+
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } } @else if (filtruCategorie == 1) { @for(exercitiu of biceps;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 2) { @for(exercitiu of triceps;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 3) { @for(exercitiu of antebrat;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } } @else if (filtruCategorie == 4) { @for(exercitiu of piept;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 5) { @for(exercitiu of spate;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } } @else if (filtruCategorie == 6) { @for(exercitiu of umeri;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 7) { @for(exercitiu of coapse;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } } @else if (filtruCategorie == 8) { @for(exercitiu of gambe;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 9) { @for(exercitiu of abdomen;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } } @else if (filtruCategorie == 10) { @for(exercitiu of sporturi;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }@else if (filtruCategorie == 11) { @for(exercitiu of cardio;track exercitiu){
+    <mat-card class="marginMatcard">
+        <div class="matcardContent">
+            <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+            <mat-card-subtitle>{{exercitiu.Categorie}}</mat-card-subtitle>
+            <div><img class="circle-image" [src]="exercitiu.imagine"></div>
+            <div class="centrareTabela">
+                <h1>Descrierea exercițiului:{{exercitiu.Descriere}}</h1>
+                <table>
+                    <tr>
+                        <th>Kilocalorii consumate în 10 minute</th>
+                        <th>Kilocalorii consumate în o repetare</th>
+                    </tr>
+                    <tr>
+                        <th>{{exercitiu.caloriiPer10Minute}}</th>
+                        <th>{{exercitiu.caloriiPerRepetare}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="doubleButton">
+            @if(isSelectat(exercitiu) == false){
+
+            <button mat-flat-button color="primary" (click)="adaugaExercitiuAntrenament(exercitiu)">Adaugă în antrenament</button>}@else{<button mat-flat-button color="primary" (click)="StergeExercitiuAntrenament(exercitiu)">Șterge din antrenament</button>}
+            @if(user[0].Admin ){
+            <button mat-flat-button color="primary" (click)="onDeleteAliment(exercitiu.Id)">Ștergere exercițiu</button>}
+        </div>
+
+
+    </mat-card>
+    } }
+</div>
+
+<br><br><br> @if(user[0].Admin ){
+
+<div class="MatCard">
+    <button mat-flat-button color="primary" (click)="onAddExercitiu()">Adaugă exercițiu</button>
+</div>
+
+
+}

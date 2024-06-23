@@ -1,0 +1,45 @@
+<div class="creazaCereri">
+    <div class="loginBackground">
+
+        <div class="infoDiv">
+            <h1>
+                Aveți posibilitatea de a comunica diferite probleme întâlnite în utilizarea aplicației și de a oferi sugestii pentru îmbunătățirea aplicației. Aceste cereri vor fi atribuite administratorilor. Aveții posibilitatea de a urmări statutul cererii în fiecare
+                moment până la soluționarea acesteia.
+            </h1>
+        </div>
+    </div>
+    <div class="center_element">
+        <form [formGroup]="cerereForm">
+            <div class="container">
+
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Categorie</mat-label>
+                        <mat-select formControlName="categorie" placeholder="Categorie">
+                            <mat-option value="Sugestii">Sugestii</mat-option>
+                            <mat-option value="Cerere rol de antrenor">Cerere rol de antrenor</mat-option>
+                            <mat-option value="Cerere rol de admin">Cerere rol de admin</mat-option>
+                            <mat-option value="Aliment nou">Aliment nou</mat-option>
+                            <mat-option value="Probleme intampinate">Probleme intampinate</mat-option>
+                            <mat-option value="Exercitiu nou">Exercitiu nou</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Descriere</mat-label>
+                        <textarea formControlName="descriere" matInput rows="5"></textarea>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+    <div class="center_element gap_element">
+        <button mat-raised-button color="primary" (click)="onCreareCerere()">Trimite cererea</button>
+        <button mat-raised-button color="primary" (click)="onClose()">Închide fereastra</button>
+    </div>
+</div>

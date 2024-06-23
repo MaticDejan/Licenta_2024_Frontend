@@ -1,0 +1,79 @@
+ @if(user[0].Admin == 0){
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Aveți posibilitatea de a comunica diferite probleme întâlnite în utilizarea aplicației și de a oferi sugestii pentru îmbunătățirea aplicației. Aceste cereri vor fi atribuite administratorilor. Aveții posibilitatea de a urmări statutul cererii în fiecare
+            moment până la soluționarea acesteia.
+        </h1>
+    </div>
+</div>
+} @else{
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Aveți posibilitatea de a răspunde cererilor efectuate de către utilizatori, în cazul în care există cereri active.
+        </h1>
+    </div>
+</div> } @if((user[0].Admin != 0) && (cererinull == 1)){
+<div class="loginBackground">
+    <h1>Nu sunt cereri active momentan, vă rugăm să reveniți mai târziu !</h1>
+</div>
+} @if(user[0].Admin == 0){
+<div class="container">@for(cerere of cereri;track cerere){ @if(cerere.idUtilizatorCerere == user[0].Id){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent buttonSpace">
+                <mat-card-title>{{cerere.categorie}}</mat-card-title>
+                <mat-card-subtitle>Cerere</mat-card-subtitle>
+                <div class="scris_centrat">
+                    <h1> Descriere:{{cerere.descriere}}</h1>
+                </div>
+                <div class="scris_centrat">
+                    <h1> Status cerere:{{cerere.status}}</h1>
+                </div>
+                <div class="scris_centrat">
+                    <h1> Raspuns cerere: @if(cerere.status == "Acceptat" || cerere.status == "Respins" ){ {{cerere.raspuns}} }@else{ Cerere nerezolvată }</h1>
+                </div>
+                @if(cerere.status != "In asteptare"){
+                <button mat-flat-button color="primary" (click)="OnStergeCererea(cerere.Id)">Șterge cererea</button> }
+            </div>
+        </mat-card>
+    </div>
+    <br> } }</div> } @if(user[0].Admin == 0){
+<div class="center_button"><button mat-raised-button color="primary" (click)="onCreazaCerere()">Crează o cerere nouă</button></div> } @if(user[0].Admin == 1){ @for(cerere of cereri;track cerere){ @if(cerere.status == "In asteptare") {
+<div class="container">
+    <mat-card class="matcardContent marimeMatcard">
+        <mat-card-title>{{cerere.categorie}}</mat-card-title>
+        <mat-card-subtitle>Cerere</mat-card-subtitle>
+        <div class="scris_centrat">
+            <h1> Descriere:{{cerere.descriere}}</h1>
+        </div>
+
+        <form [formGroup]="raspunsForm">
+
+            <div class="center_element">
+                <mat-form-field appearance="fill">
+                    <mat-label>Răspuns</mat-label>
+                    <textarea formControlName="raspuns" matInput rows="5"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="center_element">
+                <mat-form-field appearance="fill">
+                    <mat-label>Verdict</mat-label>
+                    <mat-select formControlName="verdict" placeholder="Verdict">
+                        <mat-option value="Acceptat">Aprobată</mat-option>
+                        <mat-option value="Respins">Respinsă</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+        <button mat-raised-button color="primary" (click)="OnRaspunsCerere(cerere.Id)">Răspunde cerere</button>
+    </mat-card>
+</div>
+} } }

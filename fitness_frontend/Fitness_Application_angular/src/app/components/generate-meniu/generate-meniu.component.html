@@ -1,0 +1,102 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Completează formularul următor prin selectarea tipului de preparare al fiecărui aliment și prin adăugarea cantității dorite. Ulterior salvează meniul pentru a fi postat pe pagina profilului și pentru a avea acces la el mai târziu!
+
+        </h1>
+    </div>
+</div>
+<div class="meniu">
+    <mat-card class="MatCardContent">
+        <form [formGroup]="newMeniu">
+            <div class="formContent">
+                <mat-form-field appearance="fill">
+                    <mat-label>Numele meniului</mat-label>
+                    <input matInput formControlName="nume" placeholder="Introduceți numele meniului ">
+                </mat-form-field>
+            </div>
+            <div class="formContent">
+                <mat-form-field appearance="fill">
+                    <mat-label>Descriere</mat-label>
+                    <textarea formControlName="descriere" matInput rows="5"></textarea>
+                </mat-form-field>
+            </div>
+            @if(user[0].Antrenor == 1){ @if(isAntrenor == 0){
+            <div class="formContent"><button mat-flat-button color="primary" (click)="antrenorMode()">Doresc să adaug un meniu unui client</button></div> } @else {
+            <div class="formContent"><button mat-flat-button color="primary" (click)="userMode()">Doresc să îmi adaug mie un meniu</button></div>}}
+            <br> @if(isAntrenor == 1){
+            <div class="formContent">
+                <mat-form-field appearance="fill">
+                    <mat-label>Client</mat-label>
+                    <mat-select formControlName="Client" placeholder="Alege client">
+                        @for(client of clienti; track client){
+                        <mat-option value="{{client.Id}}">{{client.Nume}} {{client.Prenume}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            } @for(aliment of AlimenteSelectate;track aliment){
+            <mat-card class="MatCardNormal">
+                <div class="formContent">
+                    <mat-card-title>Numele alimentului</mat-card-title>
+                </div>
+                <div class="formContent">
+                    <mat-card-subtitle>{{aliment.Nume}}</mat-card-subtitle>
+                </div>
+                <div>
+                    <div class="formContent">
+                        <table>
+                            <tr>
+                                <th>Selectează gramajul</th>
+                                <th>Mod de preparare</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Gramaj</mat-label>
+                                        <input matInput type="number" formControlName="{{aliment.Nume}}" placeholder="Introduceți cantitatea ">
+                                    </mat-form-field>
+                                </th>
+                                <th>
+                                    @if(aliment.prajit == 1){
+                                    <button mat-flat-button color="primary">Prăjit</button> }@else if (aliment.fiert == 1) {
+                                    <button mat-flat-button color="primary">Fiert</button> }@else {<button mat-flat-button color="primary">Crud</button>}</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="buttonSpace formContent"><button mat-flat-button color="primary" (click)="isCrud(aliment)">Crud</button><button mat-flat-button color="primary" (click)="isFiert(aliment)">Fiert </button><button mat-flat-button color="primary" (click)="isPrajit(aliment)">Prăjit </button></div>
+
+                    <div class="buttonSpace formContent">
+                        <button mat-flat-button color="primary" (click)="onStergeAliment(aliment)">Ștergere aliment</button>
+                    </div>
+                </div>
+            </mat-card>
+            }
+        </form>
+        <div class="formContent">
+            <h1><b>Informațiile nutriționale ale meniului:</b></h1>
+        </div>
+        <div class="formContent">
+            <table>
+                <tr>
+                    <th>Total proteine</th>
+                    <th>Total carbohidrați</th>
+                    <th>Total zahăr</th>
+                    <th>Total grăsimi</th>
+                    <th>Total calorii</th>
+                </tr>
+                <tr>
+                    <th>{{totalProteine}}</th>
+                    <th>{{totalCarbohidrati}}</th>
+                    <th>{{totalZahar}}</th>
+                    <th>{{totalGrasimi}}</th>
+                    <th>{{totalCalorii}}</th>
+                </tr>
+            </table>
+        </div>
+        <div class="buton">
+            <button mat-flat-button color="primary" (click)="salveazaMeniu()">Salvează meniul</button>
+        </div>
+    </mat-card>
+</div>

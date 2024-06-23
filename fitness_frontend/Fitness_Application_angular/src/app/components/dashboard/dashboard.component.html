@@ -1,0 +1,99 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Această pagină este dedicată adminilor . Este afișată lista cu toți utilizatorii aplicației și rolurile acestora și că permite să accesați conturile acestora și să le oferiți sau retrageți rolurile.
+        </h1>
+    </div>
+</div>
+<div>
+    <div class="MatCard buttonSpace buttonSpace">
+        <button mat-flat-button color="primary" (click)="onFiltruUtilizatori(0)">Toți utilizatorii</button>
+        <button mat-flat-button color="primary" (click)="onFiltruUtilizatori(1)">Utilizatori simpli</button>
+        <button mat-flat-button color="primary" (click)="onFiltruUtilizatori(2)">Antrenori</button>
+        <button mat-flat-button color="primary" (click)="onFiltruUtilizatori(3)">Admini</button>
+    </div>
+</div>
+<div class="container">
+    @if(filtruUtilizatori == 0) { @for(user of users;track user){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent">
+                <div (click)="navigateTo(user.Id)">
+                    <mat-card-title>{{user.Nume}} {{user.Prenume}}</mat-card-title>
+
+                    <mat-card-subtitle>@if(user.Admin){Admin } @if(user.Antrenor){Antrenor } @else{Utilizator }</mat-card-subtitle>
+                    <div><img class="circle-image" [src]="user.imagine"></div>
+                </div>
+                <div class="pozitieMatCard buttonSpace">
+                    @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onadaugaAdmin(user)">Adaugă admin</button>} @if(!user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onAdaugaRolAntrenor(user)">Adaugă antrenor</button>} @if(user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onStergeRolAntrenor(user)">Șterge antrenor</button>} @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onDeleteUser(user.Id)">Șterge cont</button>}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    } } @else { @if(filtruUtilizatori == 1) { @for(user of utilizatori;track user){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent">
+                <div (click)="navigateTo(user.Id)">
+                    <mat-card-title>Utilizator</mat-card-title>
+                    <mat-card-subtitle>{{user.Nume}} {{user.Prenume}}</mat-card-subtitle>
+                    <mat-card-subtitle>@if(user.Admin){Admin } @if(user.Antrenor){Antrenor } @else{Utilizator }</mat-card-subtitle>
+                    <div><img class="circle-image" [src]="user.imagine"></div>
+                </div>
+                <div class="pozitieMatCard buttonSpace">
+                    @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onadaugaAdmin(user)">Adaugă admin</button>} @if(!user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onAdaugaRolAntrenor(user)">Adaugă antrenor</button>} @if(user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onStergeRolAntrenor(user)">Șterge antrenor</button>} @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onDeleteUser(user.Id)">Șterge cont</button>}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    } } @else { @if(filtruUtilizatori == 2) { @for(user of antrenori;track user){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent">
+                <div (click)="navigateTo(user.Id)">
+                    <mat-card-title>Utilizator</mat-card-title>
+                    <mat-card-subtitle>{{user.Nume}} {{user.Prenume}}</mat-card-subtitle>
+                    <mat-card-subtitle>@if(user.Admin){Admin } @if(user.Antrenor){Antrenor } @else{Utilizator }</mat-card-subtitle>
+                    <div><img class="circle-image" [src]="user.imagine"></div>
+                </div>
+                <div class="pozitieMatCard buttonSpace">
+                    @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onadaugaAdmin(user)">Adaugă admin</button>} @if(!user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onAdaugaRolAntrenor(user)">Adaugă antrenor</button>} @if(user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onStergeRolAntrenor(user)">Șterge antrenor</button>} @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onDeleteUser(user.Id)">Șterge cont</button>}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    } } @else { @for(user of admins;track user){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent">
+                <div (click)="navigateTo(user.Id)">
+                    <mat-card-title>Utilizator</mat-card-title>
+                    <mat-card-subtitle>{{user.Nume}} {{user.Prenume}}</mat-card-subtitle>
+                    <mat-card-subtitle>@if(user.Admin){Admin } @if(user.Antrenor){Antrenor } @else{Utilizator }</mat-card-subtitle>
+                    <div><img class="circle-image" [src]="user.imagine"></div>
+                </div>
+                <div class="pozitieMatCard buttonSpace">
+                    @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onadaugaAdmin(user)">Adaugă admin</button>} @if(!user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onAdaugaRolAntrenor(user)">Adaugă antrenor</button>} @if(user.Antrenor){
+                    <button mat-flat-button color="primary" (click)="onStergeRolAntrenor(user)">Șterge antrenor</button>} @if(!user.Admin){
+                    <button mat-flat-button color="primary" (click)="onDeleteUser(user.Id)">Șterge cont</button>}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    } } } }
+</div>

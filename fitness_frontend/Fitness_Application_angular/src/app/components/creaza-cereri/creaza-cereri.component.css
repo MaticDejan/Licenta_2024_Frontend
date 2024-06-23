@@ -1,0 +1,38 @@
+.creazaCereri {
+    width: 650px;
+    height: 600px;
+    padding: 20px;
+}
+
+.infoDiv {
+    background-color: lightgreen;
+    width: 850px;
+    margin: 30px;
+    padding: 30px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+}
+
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.center_element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gap_element {
+    gap: 8px;
+}

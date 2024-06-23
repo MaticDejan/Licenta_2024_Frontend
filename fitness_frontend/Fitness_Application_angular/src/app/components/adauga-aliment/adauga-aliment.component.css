@@ -1,0 +1,70 @@
+.updateAliment {
+    width: 850px;
+    height: 800px;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.primele4 {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
+.mijloc4 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ultimele4 {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+}
+
+.mijloc4_1 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.infoDiv {
+    background-color: lightgreen;
+    width: 850px;
+    margin: 30px;
+    padding: 30px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+}
+
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.imagine_aliment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_center_gap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}

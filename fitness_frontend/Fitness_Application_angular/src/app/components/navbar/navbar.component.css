@@ -1,0 +1,11 @@
+.spacer {
+    flex: auto 1 1;
+}
+
+.FitnessApp {
+    margin-right: 50px;
+}
+
+.mat-toolbar {
+    background-color: lightgreen;
+}

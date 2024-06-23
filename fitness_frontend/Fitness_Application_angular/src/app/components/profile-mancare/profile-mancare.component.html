@@ -1,0 +1,22 @@
+<div class="container">
+    @for(meniu of meniuri;track meniu){ @if(meniu.idUtilizator == userId){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div (click)="navigateTo(meniu.Id)" class="matcardContent buttonSpace">
+                <div class="maxSizeTitle">
+                    <mat-card-title>{{meniu.Nume}}</mat-card-title>
+                </div>
+                <mat-card-subtitle>Meniu</mat-card-subtitle>
+                <div><img class="circle-image" src="https://licenta0405dejan.blob.core.windows.net/pozestatice/meniu.jpg"></div>
+                <p><b>Total calorii:</b> {{meniu.kcal}} kcal</p>
+            </div>
+            <div class="pozitieMatCard">
+                <button mat-flat-button color="primary" (click)="onStergereMeniu(meniu.Id)">Șterge meniu</button>
+            </div>
+        </mat-card>
+    </div>
+
+
+
+    } }
+</div>

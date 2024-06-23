@@ -1,0 +1,104 @@
+<p>generate-antrenament works!</p>
+
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>Aceasta este pagina pentru crearea unui antrenament. Completați pentru fiecare exercițiu tipul acestuia și perioada sau numărul de serii și repetări după caz. Ulterior creați antrenamentul iar acesta v-a fi salvat în pagina profilului dumneavoastră.</h1>
+    </div>
+</div>
+
+
+<div class="antrenament">
+    <mat-card class="MatCardContent">
+        <form [formGroup]="newAntrenament">
+            <div class="formContent">
+                <mat-form-field appearance="fill">
+                    <mat-label>Numele antrenamentului</mat-label>
+                    <input matInput formControlName="Nume" placeholder="Introduceți numele meniului ">
+                </mat-form-field>
+            </div>
+            <div class="formContent">
+                <mat-form-field appearance="fill">
+                    <mat-label>Descriere</mat-label>
+                    <textarea formControlName="Descriere" matInput rows="5"></textarea>
+                </mat-form-field>
+            </div>
+            @if(user[0].Antrenor == 1){ @if(isAntrenor == 0){
+            <div class="formContent"><button mat-flat-button color="primary" (click)="antrenorMode()">Doresc să adaug un antrenament unui client</button></div> } @else {
+            <div class="formContent"><button mat-flat-button color="primary" (click)="userMode()">Doresc să îmi adaug mie un antrenament</button></div>}}
+            <br> @if(isAntrenor == 1){
+            <div class="formContent">
+                <mat-form-field appearance="fill">
+                    <mat-label>Client</mat-label>
+                    <mat-select formControlName="Client" placeholder="Alege client">
+                        @for(client of clienti; track client){
+                        <mat-option value="{{client.Id}}">{{client.Nume}} {{client.Prenume}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            } @for(exercitiu of exercitiiSelectate;track exercitiu){
+            <mat-card>
+                <div class="formContent">
+                    <mat-card-title>{{exercitiu.Nume}}</mat-card-title>
+                </div>
+                <div class="formContent">
+                    <mat-card-subtitle>Numele exercitiului</mat-card-subtitle>
+                </div>
+                <div>
+
+                    <div class="formContent">Selectează tipul de exercițiu</div>
+                    <div class="formContent buttonSpace"><button mat-flat-button color="primary" (click)="isAnduranta(exercitiu)">Anduranță</button><button mat-flat-button color="primary" (click)="isGreutati(exercitiu)">Greutăți </button> </div>
+                    <div class="formContent">
+                        @if(exercitiu.anduranta == 1){
+                        <table>
+                            <tr>
+                                <th>Cât timp vei practica exercițiul</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Timp petrecut realizând exercițiul</mat-label>
+                                        <input matInput type="number" formControlName="{{exercitiu.Nume}}timp" placeholder="Introduceți cantitatea ">
+                                    </mat-form-field>
+                                </th>
+                            </tr>
+                        </table>
+                        } @else if (exercitiu.greutati == 1) {
+                        <table>
+                            <tr>
+                                <th>Numărul de serii</th>
+                                <th>Numărul de repetări per serie</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Număr de serii</mat-label>
+                                        <input matInput type="number" formControlName="{{exercitiu.Nume}}serii" placeholder="Introduceți cantitatea ">
+                                    </mat-form-field>
+                                </th>
+                                <th>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Număr de repetări per serie</mat-label>
+                                        <input matInput type="number" formControlName="{{exercitiu.Nume}}repetari" placeholder="Introduceți cantitatea ">
+                                    </mat-form-field>
+                                </th>
+                            </tr>
+                        </table>
+                        }@else {
+                        <div class="formContent warningAntrenament">
+                            <p>Nu ai ales tipul exercițiului, te rog să selectezi unul</p>
+                        </div>}
+                    </div>
+                </div>
+                <div class="formContent buttonSpace">
+                    <button mat-flat-button color="primary" (click)="onStergeexercitiu(exercitiu)">Șterge exercițiu</button>
+                </div>
+            </mat-card>
+            }
+        </form>
+        <div class="buton">
+            <button mat-flat-button color="primary" (click)="salveazaAntrenament()">Salvează antrenamentul</button>
+        </div>
+    </mat-card>
+</div>

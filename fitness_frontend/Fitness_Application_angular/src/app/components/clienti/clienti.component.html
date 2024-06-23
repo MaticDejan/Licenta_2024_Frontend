@@ -1,0 +1,26 @@
+<div class="loginBackground">
+
+    <div class="infoDiv">
+        <h1>
+            Această pagină este dedicată antrenorilor. Dacă aveți o colaborare începută cu un client, acesta va apărea în lista de mai jos și aveți posibilitatea de a înceta colaborarea cu acesta dacă considerați acest lucru !
+        </h1>
+    </div>
+</div>
+
+
+<div class="container">
+    @for(client of clienti;track client){
+    <div class="marginMatcard pozitieMatCard">
+        <mat-card class="matcardContent marimeMatcard">
+            <div class="matcardContent buttonSpace">
+                <div (click)="navigateTo(client.Id)">
+                    <mat-card-title>Client</mat-card-title>
+                    <mat-card-subtitle>{{client.Nume}} {{client.Prenume}}</mat-card-subtitle>
+                    <div><img class="circle-image" [src]="client.imagine"></div>
+                </div>
+                <div class="pozitieMatCard"><button mat-flat-button color="primary" (click)="onStergeClient(client)">Șterge client</button></div>
+            </div>
+        </mat-card>
+    </div>
+    }
+</div>

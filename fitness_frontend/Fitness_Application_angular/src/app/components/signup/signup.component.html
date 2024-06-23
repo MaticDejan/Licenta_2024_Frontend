@@ -1,0 +1,118 @@
+<div class="signupBackground">
+
+    <div class="infoDiv">
+        <h1>Completați mai jos formularul de înregistrare în aplicație. Pe baza datelor oferite, veți putea să vă conectați în aplicație și să folosiți toate funcțiile pe care aceasta le oferă utilizatorilor
+        </h1>
+    </div>
+</div>
+
+
+<div class="signup">
+    <mat-card class="matCardContent signupBackground">
+        <div class="formular">
+            <form [formGroup]="signUpForm" (submit)="onSignUp()">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nume</mat-label>
+                        <input matInput formControlName="Nume" placeholder="Introduceți numele ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Prenume</mat-label>
+                        <input matInput formControlName="Prenume" placeholder="Introduceți prenumele ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Greutate</mat-label>
+                        <input matInput type="number" formControlName="Greutate" placeholder="kg ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Înălțime</mat-label>
+                        <input matInput type="number" formControlName="Inaltime" placeholder="cm ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Circumferință gât</mat-label>
+                        <input matInput type="number" formControlName="gat" placeholder="cm ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Circumferință talie</mat-label>
+                        <input matInput type="number" formControlName="talie" placeholder="cm ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Circumferință antebraț</mat-label>
+                        <input matInput type="number" formControlName="antebrat" placeholder="cm ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Circumferință coapse</mat-label>
+                        <input matInput type="number" formControlName="coapse" placeholder="cm ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Vârstă</mat-label>
+                        <input matInput type="number" formControlName="Varsta" placeholder="ani ">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Sex</mat-label>
+                        <mat-select formControlName="sex" placeholder="Selectați opțiunea">
+                            <mat-option value="Barbat">Bărbat</mat-option>
+                            <mat-option value="Femeie">Femeie</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nivelul de efort zilnic</mat-label>
+                        <mat-select formControlName="Activitate" placeholder="Selectați opțiunea">
+                            <mat-option value="Sedentar">Sedentar</mat-option>
+                            <mat-option value="Miscare usoara">Mișcare ușoară</mat-option>
+                            <mat-option value="Moderat">Moderat</mat-option>
+                            <mat-option value="Activ">Activ</mat-option>
+                            <mat-option value="Sport de performanta">Sport de performanță</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="Email" placeholder="Introduceți adresa de email">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Parolă</mat-label>
+                        <input matInput type="password" formControlName="Parola" placeholder="Introduceți parola">
+                    </mat-form-field>
+                </div>
+                <div class="mijloc4">
+                    <mat-label>Adaugă o poză de profil</mat-label>
+                    <input type="file" id="fileInput" (change)="onFileChange($event)" hidden required>
+                    <button mat-flat-button color="primary" type="button" (click)="triggerFileInput()">Alege fișier</button>
+                    <span>@if(selectedFile != null){Fișier adăugat}</span>
+                    <br>
+                </div>
+                <div class="mijloc4">
+                    <span class="navigare" (click)="conectare()">Ai cont deja ? Conectează-te !</span>
+
+                    <button type="submit" mat-raised-button color="primary">Creare Cont</button>
+                </div>
+            </form>
+
+        </div>
+    </mat-card>
+</div>
